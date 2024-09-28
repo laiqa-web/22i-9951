@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serenity Sounds: Immersive Nature Ambience</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Georgia', serif;
+            color: #2c3e50;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Header with Grid Layout */
+        header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            grid-template-areas: 
+                "logo nav";
+            padding: 20px;
+            background: linear-gradient(135deg, #009688, #00695c);
+            color: white;
+        }
+
+        .hero {
+            grid-area: logo;
+            display: grid;
+            grid-template-rows: auto auto;
+        }
+
+        .hero h1 {
+            font-size: 2em;
+            margin: 5px 0 2px;
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            margin: 0;
+            font-style: italic;
+        }
+
+        .hero-video {
+            width: 100%;
+            height: 250px;
+            opacity: 0.8;
+            grid-row: span 2;
+        }
+
+        nav {
+            grid-area: nav;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background-color: #009688;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #00796b;
+        }
+
+        /* Main Content Grid Layout */
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Grid-based Card Layout for Sound Categories and Playlists */
+        .sound-category, .playlist {
+            background-color: #578181;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+        }
+
+        .sound-category img, .playlist img {
+            width: 50%;
+            height: 250px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            transition: box-shadow 0.3s ease;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* Feedback Form Layout with Grid */
+        #feedback-form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 20px;
+            background-color: rgb(78, 129, 129);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .submit-button {
+            background-color: rgb(24, 68, 64);
+            color: Black;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            justify-self: center;
+        }
+
+        .submit-button:hover {
+            background-color: turquoise;
+        }
+
+        /* Footer Grid Layout */
+        footer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            background-color: #00695c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #ffcc80;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff5722;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            background-color: #e64a19;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 1.8em;
+            }
+
+            .hero p {
+                font-size: 1.2em;
+            }
+
+            footer {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-video {
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav ul li a {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+
+            footer {
+                font-size: 0.9em;
+            }
+
+            .hero-video {
+                height: 100px;
+            }
+
+            .submit-button {
+                font-size: 1em;
+            }
+
+            .back-to-top {
+                font-size: 14px;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section with Hero Video -->
+    <header>
+        <div class="hero">
+            <video class="hero-video" autoplay muted loop>
+                <source src="/material/serenityvideo.mp4" type="video/mp4">
+            </video>
+            <h1>Serenity Sounds</h1>
+            <p>Immersive Nature Ambience</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#sound-library">Nature Sound Library</a></li>
+                <li><a href="#playlists">Curated Playlists</a></li>
+                <li><a href="#feedback-form">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Sound Library Section with Grid Layout -->
+        <section id="sound-library" class="sound-category">
+            <h2>Nature Sound Library</h2>
+            <div class="sound-category">
+                <img src="/material/forest.jpeg" alt="Forest Ambience" class="sound-image">
+                <h3>Forest Ambience</h3>
+                <p>Birds chirping, rustling leaves, distant water streams.</p>
+                <audio controls><source src="/material/forestambience.wav" type="audio/mpeg"></audio>
+                <audio controls><source src="/material/forest2.wav" type="audio/mpeg"></audio>
+            </div>
+        </div>
+        <div class="sound-category">
+            <img src="/material/ocean.jpeg" alt="Ocean Waves" class="sound-image">
+            <h2>Ocean Waves</h2>
+            <p>Gentle waves, seagulls, distant thunder.</p>
+            <ol>
+                <li> <audio controls><source src="/material/ocean.mp3" type="audio/mpeg"></audio></li>
+                <li> <audio controls><source src="/material/ocean2.wav" type="audio/mpeg"></audio></li>
+            </ol>
+        </div>
+        <div class="sound-category">
+            <img src="/material/rain.jpeg" alt="Rainfall" class="sound-image">
+            <h3>Rainfall</h3>
+            <p>Light rain, thunderstorms, raindrops on leaves.</p>
+            <ol>
+                <li><audio controls><source src="/material/rain.wav" type="audio/mpeg"></audio></li>
+                <li><audio controls><source src="/material/rainfall2.mp3" type="audio/mpeg"></audio></li>
+            </ol>
+        </div>
+        </section>
+
+        <!-- Playlists Section with Grid Layout -->
+        <section id="playlists" class="playlist">
+            <h2>Curated Playlists</h2>
+            <div class="playlist">
+                <img src="/material/relaxation.jpeg" alt="Relaxation Playlist" class="playlist-image">
+                <h3>Relaxation</h3>
+                <p>Gentle, calming sounds for unwinding.</p>
+                <audio controls><source src="/material/relaxation.mp3" type="audio/mpeg"></audio>
+                <audio controls><source src="/material/relaxation2.wav" type="audio/mpeg"></audio>
+            </div>
+            <div class="playlist">
+                <img src="/material/study.jpeg" alt="Focus Playlist" class="playlist-image">
+                <h3>Focus and Study</h3>
+                <p>Steady, non-intrusive sounds to help you concentrate.</p>
+                <ol>
+                    <li><audio controls><source src="/material/study.mp3" type="audio/mpeg"></audio></li>
+                    <li><audio controls><source src="/material/study2.wav" type="audio/mpeg"></audio></li>
+                </ol>
+            </div>
+            <div class="playlist">
+                <img src="/material/sleep.jpeg" alt="Sleep Playlist" class="playlist-image">
+                <h3>Sleep</h3>
+                <p>Soothing, repetitive sounds that help ease into sleep.</p>
+                <ol>
+                    <li>
+                       <audio controls>
+                            <source src="/material/sleep.mp3" type="audio/mpeg">
+                        </audio>
+                    </li>
+                    <li>
+                        <audio controls>
+                            <source src="/material/sleep2.wav" type="audio/mpeg">
+                        </audio>
+                    </li>
+                </ol>
+                
+            </div>  
+        </section>
+    </div>
+
+    <!-- Feedback Form -->
+    <section id="feedback-form">
+        <h2>About Us</h2>
+        <form>
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Share your thoughts with us"></textarea>
+            </div>
+            <button type="submit" class="submit-button">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div>Serenity Sounds &copy; 2024. All Rights Reserved.</div>
+        <div><a href="#">Privacy Policy</a></div>
+        <div><a href="#">Terms of Service</a></div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#top" class="back-to-top">Back to Top</a>
+    
+</body>
+</html>
